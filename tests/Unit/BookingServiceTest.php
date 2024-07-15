@@ -20,8 +20,6 @@ class BookingServiceTest extends TestCase
         parent::setUp();
 
         $this->bookingService = new BookingService();
-
-        User::factory()->create();
     }
 
     /** @test */
