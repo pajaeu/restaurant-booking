@@ -62,7 +62,7 @@
             </div>
         @endif
         @error('error')
-            <div class="form__error form__error--large">{{ $message }}</div>
+            <div class="form__error form__error--large" style="margin-bottom: 20px">{{ $message }}</div>
         @enderror
         @auth
             <button type="submit" class="button button--primary button--block" @if($errors->any()) disabled @endif>Rezervovat</button>

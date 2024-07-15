@@ -29,6 +29,12 @@ class BookingService
             throw new \Exception('Pro Vaše zvolené možnosti již nejsou žádné stoly k dispozici.');
         }
 
+        $isSelectedTableAvailable = $this->isTableAvailable($data['table_id'], $data['guests'], $data['date'], $data['time']);
+
+        if (!$isSelectedTableAvailable) {
+            throw new \Exception('Tento stůl již není k dispozici.');
+        }
+
         $reservedTime = Carbon::parse($data['date'] . ' ' . $data['time'])
             ->format('Y-m-d H:i:s');
 
@@ -58,6 +64,25 @@ class BookingService
 
         return collect(range($startHour, $endHour))
             ->mapWithKeys(fn($hour) => [$hour => $hour . ':00']);
+    }
+
+    public function isTableAvailable(int $tableId, int $guests, string $date, string $time): bool
+    {
+        $table = Table::find($tableId);
+
+        if (!$table) {
+            return false;
+        }
+
+        $bookingDateTime = Carbon::parse($date . ' ' . $time);
+        $bookingStartTime = $bookingDateTime->copy()
+            ->subHours(2);
+        $bookingEndTime = $bookingDateTime->copy();
+
+        return Booking::where('table_id', $tableId)
+            ->where('capacity', '>=', $guests)
+            ->whereBetween('reserved_time', [$bookingStartTime, $bookingEndTime])
+            ->doesntExist();
     }
 
     public function findAvailableTable(int $guests, string $date, string $time)
