@@ -48,8 +48,8 @@ class BookingService
 
     public function findAvailableHours(string $date): Collection
     {
-        $startHour = config('app.open_hours.open');
-        $endHour = config('app.open_hours.close') - 1;
+        $startHour = config('restaurant.open_hours.open');
+        $endHour = config('restaurant.open_hours.close') - 1;
 
         $currentHour = Carbon::now()
             ->hour;

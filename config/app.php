@@ -121,10 +121,5 @@ return [
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
-    ],
-
-    'open_hours' => [
-        'open' => env('APP_OPEN_HOUR', 10),
-        'close' => env('APP_CLOSE_HOUR', 21),
     ]
 ];

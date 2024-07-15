@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header__inner">
-        <div class="header__logo">Rezervační Systém</div>
+        <div class="header__logo">{{ config('restaurant.name') }}</div>
         {{ $slot }}
         <div class="header__actions">
             <a href="{{ route('booking.form') }}" class="action__link">Rezervovat stůl</a>
