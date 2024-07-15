@@ -225,6 +225,21 @@ main {
 		gap: 20px;
 		flex-wrap: wrap;
 
+		.tables__empty {
+			display: flex;
+			width: 100%;
+			padding: 10px;
+			color: #f0c12a;
+			align-items: center;
+			background-color: #fffcf2;
+
+			svg {
+				margin-right: 10px;
+				width: 30px;
+				height: 30px;
+			}
+		}
+
 		.table {
 			width: 180px;
 			height: 80px;
