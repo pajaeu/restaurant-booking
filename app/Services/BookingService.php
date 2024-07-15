@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\BookingException;
 use App\Models\Booking;
 use App\Models\Table;
 use Carbon\Carbon;
@@ -19,20 +20,20 @@ class BookingService
 
 
     /**
-     * @throws \Exception
+     * @throws BookingException
      */
     public function createBooking(array $data)
     {
         $table = $this->findAvailableTable($data['guests'], $data['date'], $data['time']);
 
         if (!$table) {
-            throw new \Exception('Pro Vaše zvolené možnosti již nejsou žádné stoly k dispozici.');
+            BookingException::tableNotAvailable();
         }
 
         $isSelectedTableAvailable = $this->isTableAvailable($data['table_id'], $data['guests'], $data['date'], $data['time']);
 
         if (!$isSelectedTableAvailable) {
-            throw new \Exception('Tento stůl již není k dispozici.');
+            BookingException::selectedTableNotAvailable();
         }
 
         $reservedTime = Carbon::parse($data['date'] . ' ' . $data['time'])
