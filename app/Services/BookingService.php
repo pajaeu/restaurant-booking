@@ -71,14 +71,13 @@ class BookingService
     {
         $table = Table::find($tableId);
 
-        if (!$table) {
+        if (!$table || $table->capacity < $guests) {
             return false;
         }
 
         [$bookingStartTime, $bookingEndTime] = $this->getBookingTimes($date, $time);
 
         return Booking::where('table_id', $tableId)
-            ->where('capacity', '>=', $guests)
             ->whereBetween('reserved_time', [$bookingStartTime, $bookingEndTime])
             ->doesntExist();
     }
