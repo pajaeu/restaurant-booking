@@ -10,14 +10,6 @@ use Illuminate\Support\Collection;
 
 class BookingService
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
 
     /**
      * @throws BookingException

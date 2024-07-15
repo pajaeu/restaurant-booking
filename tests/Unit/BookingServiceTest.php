@@ -51,8 +51,8 @@ class BookingServiceTest extends TestCase
     /** @test */
     public function it_throws_exception_when_no_table_is_available()
     {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Pro Vaše zvolené možnosti již nejsou žádné stoly k dispozici.');
+        $this->expectException(\App\Exceptions\BookingException::class);
+        $this->expectExceptionMessage('V tento čas není žádný stůl k dispozici.');
 
         $bookingData = [
             'guests' => 2,
@@ -95,8 +95,11 @@ class BookingServiceTest extends TestCase
         $table1 = Table::factory()->create(['capacity' => 4]);
         $table2 = Table::factory()->create(['capacity' => 4]);
 
-        Booking::factory()->create([
+        $user = User::factory()->create();
+
+        $user->bookings()->create([
             'table_id' => $table1->id,
+            'guests' => 2,
             'reserved_time' => '2024-07-15 12:00:00'
         ]);
 
@@ -111,8 +114,11 @@ class BookingServiceTest extends TestCase
     {
         $table = Table::factory()->create(['capacity' => 4]);
 
-        Booking::factory()->create([
+        $user = User::factory()->create();
+
+        $user->bookings()->create([
             'table_id' => $table->id,
+            'guests' => 2,
             'reserved_time' => '2024-07-15 11:00:00'
         ]);
 
