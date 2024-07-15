@@ -41,5 +41,6 @@
                 </tr>
             @endif
         </table>
+        {{ $tables->links('pagination.default') }}
     </div>
 </x-layouts.app>
