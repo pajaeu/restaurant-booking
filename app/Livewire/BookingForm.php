@@ -110,7 +110,7 @@ class BookingForm extends Component
 
             session()->flash('success', "Rezervace proběhla úspěšně, vaše číslo rezervace je: {$booking->id}");
 
-            $this->reset(['guests', 'date', 'time', 'hours', 'tableId', 'tables']);
+            $this->resetExcept('hours', 'tables');
         } catch (\Exception $e) {
             $this->addError('error', $e->getMessage());
         }
