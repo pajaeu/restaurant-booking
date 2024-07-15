@@ -11,4 +11,8 @@ Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])-
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => \App\Http\Middleware\IsAdminMiddleware::class], function () {
+        Route::resource('tables', \App\Http\Controllers\Admin\TableController::class);
+    });
 });

@@ -124,18 +124,18 @@ main {
 	border-radius: 5px;
 
 	&--success {
-		background-color: #d4edda;
 		color: #155724;
+		background-color: #d4edda;
 	}
 
 	&--error {
-		background-color: #f8d7da;
 		color: #721c24;
+		background-color: #f8d7da;
 	}
 
 	&--info {
-		background-color: #cce5ff;
 		color: #004085;
+		background-color: #cce5ff;
 	}
 }
 
@@ -167,8 +167,13 @@ main {
 	}
 }
 
+.card {
+	@include card;
+}
+
 .login-register {
 	@include card;
+	max-width: 500px;
 
 	.next-link {
 		display: block;
@@ -368,6 +373,51 @@ main {
 			svg {
 				width: 20px;
 				height: 20px;
+			}
+		}
+	}
+}
+
+.table {
+	width: 100%;
+	padding: 20px;
+	border-radius: 5px;
+	border-collapse: collapse;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+	background-color: #ffffff;
+
+	th {
+		padding: 20px;
+		text-align: left;
+		border-bottom: 1px solid #eaeaea;
+	}
+
+	td {
+		padding: 20px;
+		text-align: left;
+	}
+
+	.table__actions {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+		.actions__link {
+			cursor: pointer;
+			display: block;
+			margin-left: 10px;
+			padding: 4px 8px;
+			color: #ffffff;
+			font-family: 'Sarabun', sans-serif;
+			font-size: .9rem;
+			outline: none;
+			border: none;
+			border-radius: 5px;
+			text-decoration: none;
+			background-color: $text;
+
+			&--delete {
+				background-color: #bd1423;
 			}
 		}
 	}

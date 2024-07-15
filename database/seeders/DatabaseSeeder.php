@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Table;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'email' => 'admin@booking.com',
+            'is_admin' => true,
+            'password' => bcrypt('admin'),
+        ]);
+
         Table::factory()->createMany([
             ['name' => 'A1'],
             ['name' => 'A2'],
