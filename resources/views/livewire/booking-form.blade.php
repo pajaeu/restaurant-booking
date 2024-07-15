@@ -25,7 +25,7 @@
                 <div class="hours">
                     @foreach($hours as $hour)
                         <div>
-                            <input type="radio" id="hour-{{ $hour }}" value="{{ $hour }}" wire:model="time" wire:change="findAvailableTables()">
+                            <input type="radio" id="hour-{{ $hour }}" value="{{ $hour }}" wire:model="time" wire:change="onTimeChange()">
                             <label class="hour" for="hour-{{ $hour }}">{{ $hour }}</label>
                         </div>
                     @endforeach

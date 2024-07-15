@@ -61,6 +61,13 @@ class BookingForm extends Component
         $this->findAvailableHours();
     }
 
+    public function onTimeChange(): void
+    {
+        $this->reset('tableId');
+
+        $this->findAvailableTables();
+    }
+
     public function findAvailableTables(): void
     {
         if (empty($this->date) || empty($this->time)) {
