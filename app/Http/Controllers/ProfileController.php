@@ -14,22 +14,8 @@ class ProfileController extends Controller
             ->where('reserved_time', '>', now())
             ->with('table')
             ->orderBy('reserved_time', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('profile.show', compact('user', 'bookings'));
-    }
-
-    public function edit(): View
-    {
-        return view('profile.edit');
-    }
-
-    public function update(UpdateProfileRequest $request): RedirectResponse
-    {
-        $data = $request->validated();
-
-        auth()->user()->update($data);
-
-        return back()->with('success', 'Profil byl úspěšně aktualizován');
     }
 }

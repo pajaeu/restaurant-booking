@@ -29,6 +29,7 @@
                                     <div class="booking__table">Stůl: <b>{{ $booking->table->name }}</b></div>
                                 </div>
                             @endforeach
+                            <div class="booking__pagination">{{ $bookings->links() }}</div>
                         </div>
                     @endif
                 </div>
