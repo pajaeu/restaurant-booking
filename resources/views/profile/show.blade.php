@@ -24,7 +24,10 @@
                                 <div class="booking">
                                     <div class="booking__info">
                                         <div class="booking__date">{{ $booking->reserved_time->format('d. m. Y H:i') }}</div>
-                                        <div class="booking__guests">Počet hostů: <b>{{ $booking->guests }}</b></div>
+                                        <div class="booking__meta">
+                                            <div>Počet hostů: <b>{{ $booking->guests }}</b></div>
+                                            <div>Datum vytvoření: <b>{{ $booking->created_at->format('d. m. Y H:i') }}</b></div>
+                                        </div>
                                     </div>
                                     <div class="booking__table">Stůl: <b>{{ $booking->table->name }}</b></div>
                                 </div>

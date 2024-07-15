@@ -13,7 +13,7 @@
             @enderror
         </div>
         <div class="form__group">
-            <label for="date" class="form__label">Datum</label>
+            <h3 class="form-group__title">Vyberte datum</h3>
             <input type="date" id="date" wire:model="date" wire:change="onDateChange()" class="form__input" min="{{ now()->format('Y-m-d') }}">
             @error('date')
                 <div class="form__error">{{ $message }}</div>

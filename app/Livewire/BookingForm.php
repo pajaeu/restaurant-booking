@@ -33,7 +33,7 @@ class BookingForm extends Component
         'guests.required' => 'Počet hostů je povinný údaj.',
         'guests.integer' => 'Počet hostů musí být celé číslo.',
         'guests.min' => 'Počet hostů musí být alespoň :min.',
-        'date.required' => 'Datum je povinný údaj.',
+        'date.required' => 'Nejprve vyberte datum.',
         'date.date' => 'Datum musí být platné datum.',
         'date.after_or_equal' => 'Datum musí být dnešní nebo pozdější.',
         'time.required' => 'Čas je povinný údaj.',
@@ -58,12 +58,16 @@ class BookingForm extends Component
     {
         $this->reset(['time', 'tableId', 'tables']);
 
+        $this->resetErrorBag();
+
         $this->findAvailableHours();
     }
 
     public function onTimeChange(): void
     {
         $this->reset('tableId');
+
+        $this->resetErrorBag();
 
         $this->findAvailableTables();
     }
