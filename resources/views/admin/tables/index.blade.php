@@ -12,8 +12,8 @@
         </div>
         <table class="table">
             <tr>
-                <th>Název</th>
-                <th>Počet míst</th>
+                <th style="width: 50%">Název</th>
+                <th style="width: 20%">Počet míst</th>
                 <th></th>
             </tr>
             @if($tables->isNotEmpty())

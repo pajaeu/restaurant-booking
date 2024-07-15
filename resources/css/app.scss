@@ -24,6 +24,22 @@ $background: #f0f0f0;
 	box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #bebebe;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: $primary;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #eaeaea;
+}
+
 body {
 	margin: 0;
 	color: $text;
