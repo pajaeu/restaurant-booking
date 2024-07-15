@@ -21,7 +21,7 @@ php artisan key:generate
 ```
 5.
 ```
-npm run build
+npm install && npm run build
 ```
 6.
 ```
