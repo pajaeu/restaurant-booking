@@ -74,10 +74,7 @@ class BookingService
             return false;
         }
 
-        $bookingDateTime = Carbon::parse($date . ' ' . $time);
-        $bookingStartTime = $bookingDateTime->copy()
-            ->subHours(2);
-        $bookingEndTime = $bookingDateTime->copy();
+        [$bookingStartTime, $bookingEndTime] = $this->getBookingTimes($date, $time);
 
         return Booking::where('table_id', $tableId)
             ->where('capacity', '>=', $guests)
@@ -101,14 +98,22 @@ class BookingService
 
     private function getAvailableTablesQuery(int $guests, string $date, string $time)
     {
+        [$bookingStartTime, $bookingEndTime] = $this->getBookingTimes($date, $time);
+
+        return Table::select('id', 'name', 'capacity')
+            ->where('capacity', '>=', $guests)
+            ->whereDoesntHave('bookings', function ($query) use ($bookingStartTime, $bookingEndTime) {
+                $query->whereBetween('reserved_time', [$bookingStartTime, $bookingEndTime]);
+            });
+    }
+
+    private function getBookingTimes(string $date, string $time): array
+    {
         $bookingDateTime = Carbon::parse($date . ' ' . $time);
         $bookingStartTime = $bookingDateTime->copy()
             ->subHours(2);
         $bookingEndTime = $bookingDateTime->copy();
 
-        return Table::where('capacity', '>=', $guests)
-            ->whereDoesntHave('bookings', function ($query) use ($bookingStartTime, $bookingEndTime) {
-                $query->whereBetween('reserved_time', [$bookingStartTime, $bookingEndTime]);
-            });
+        return [$bookingStartTime, $bookingEndTime];
     }
 }

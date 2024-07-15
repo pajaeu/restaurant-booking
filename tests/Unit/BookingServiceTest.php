@@ -116,7 +116,7 @@ class BookingServiceTest extends TestCase
             'reserved_time' => '2024-07-15 11:00:00'
         ]);
 
-        $availableTable = $this->bookingService->findAvailableTable(4, '2024-07-15', '12:30');
+        $availableTable = $this->bookingService->findAvailableTable(4, '2024-07-15', '14:00');
 
         $this->assertInstanceOf(Table::class, $availableTable);
         $this->assertEquals($table->id, $availableTable->id);
