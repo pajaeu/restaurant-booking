@@ -422,3 +422,63 @@ main {
 		}
 	}
 }
+
+@media only screen and (max-width: 1024px) {
+
+	.header {
+
+		.header__inner {
+			flex-wrap: wrap;
+			justify-content: center;
+
+			.header__actions {
+				margin-left: 0;
+				margin-top: 20px;
+				width: 100%;
+			}
+		}
+	}
+
+	.container {
+		padding: 0;
+	}
+
+	main {
+		padding: 20px;
+	}
+
+	.booking-form {
+
+		.hours {
+			gap: 10px;
+
+			.hour {
+				width: 90px;
+			}
+		}
+
+		.tables {
+			gap: 10px;
+
+			.table {
+				width: 140px;
+			}
+		}
+	}
+
+	.profile {
+
+		.profile__content {
+			flex-wrap: wrap;
+
+			.profile__sidebar {
+				width: 100%;
+				margin-bottom: 20px;
+			}
+
+			.profile__main {
+				padding: 0;
+			}
+		}
+	}
+}
