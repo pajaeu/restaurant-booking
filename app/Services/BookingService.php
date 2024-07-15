@@ -62,8 +62,9 @@ class BookingService
             return collect();
         }
 
-        return collect(range($startHour, $endHour))
-            ->mapWithKeys(fn($hour) => [$hour => $hour . ':00']);
+        $timeSlots = $this->generateTimeSlots($startHour, $endHour, config('restaurant.half_hours'));
+
+        return collect($timeSlots);
     }
 
     public function isTableAvailable(int $tableId, int $guests, string $date, string $time): bool
@@ -115,5 +116,22 @@ class BookingService
         $bookingEndTime = $bookingDateTime->copy();
 
         return [$bookingStartTime, $bookingEndTime];
+    }
+
+    private function generateTimeSlots(int $startHour, int $endHour, bool $halfHours = false): array
+    {
+        $fullHours = range($startHour, $endHour);
+        $timeSlots = [];
+
+        foreach ($fullHours as $hour) {
+            $formattedHour = str_pad($hour, 2, '0', STR_PAD_LEFT);
+            $timeSlots[] = $formattedHour . ':00';
+
+            if ($halfHours && $hour < $endHour) {
+                $timeSlots[] = $formattedHour . ':30';
+            }
+        }
+
+        return $timeSlots;
     }
 }

@@ -5,5 +5,6 @@ return [
     'open_hours' => [
         'open' => env('RESTAURANT_OPEN_HOUR', 10),
         'close' => env('RESTAURANT_CLOSE_HOUR', 21),
-    ]
+    ],
+    'half_hours' => env('RESTAURANT_HALF_HOURS', false),
 ];
