@@ -435,6 +435,7 @@ main {
 	td {
 		padding: 20px;
 		text-align: left;
+		border-bottom: 1px solid #f6f6f6;
 	}
 
 	.table__actions {
@@ -446,18 +447,31 @@ main {
 			cursor: pointer;
 			display: block;
 			margin-left: 10px;
-			padding: 4px 8px;
-			color: #ffffff;
+			padding: 0;
+			color: #718096;
 			font-family: 'Sarabun', sans-serif;
 			font-size: .9rem;
 			outline: none;
 			border: none;
 			border-radius: 5px;
 			text-decoration: none;
-			background-color: $text;
+			background: none;
+			transition: .2s ease;
+
+			&:hover {
+				color: $primary;
+			}
 
 			&--delete {
-				background-color: #bd1423;
+
+				&:hover {
+					color: #bd1423;
+				}
+			}
+
+			svg {
+				width: 20px;
+				height: 20px;
 			}
 		}
 	}
