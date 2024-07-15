@@ -30,3 +30,7 @@ php artisan migrate --seed
 
 #### Administrátorský účet
 admin@booking.com / admin
+
+## Ukázka
+
+![booking form](https://raw.githubusercontent.com/pajaeu/restaurant-booking/main/screenshot.png)
